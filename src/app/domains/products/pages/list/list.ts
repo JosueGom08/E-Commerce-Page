@@ -48,7 +48,22 @@ export class List {
     },
   ]);
 
-  // getGreed() {
-  //   console.log('Obtenemos un evento');
-  // }
+  cart = signal<ProductM[]>([]);
+
+  addElement(product: ProductM) {
+    // agregamos el producto al carrito
+    // this.cart.update((state) => [...state, product]);
+    // busca si el elemento ya fue ingresado
+    const element = this.cart().find((value) => value.name === product.name);
+    // si lo encuentra no lo agrega, pero si no lo encuentra lo agrega
+    if (!element) {
+      this.cart.update((state) => [...state, product]);
+    }
+  }
+
+  removeProduct(product: ProductM) {
+    this.cart.update((list) => {
+      return list.filter((value) => value !== product);
+    });
+  }
 }

@@ -18,14 +18,18 @@ export class Product {
   // description = input<string>('');
 
   product = input<ProductM>();
+  addProductCart = output<ProductM>();
 
-  // es para poder agregar funciones al componente y que podamos obtener valores desde alli
-  printTitle = output<string>();
-  greedHandler() {
-    // imprime el titulo
-    alert(`Este es el titulo del libro ${this.product()?.name}`);
-    // this.printTitle.emit('saludo');
+  addProduct() {
+    this.addProductCart.emit(this.product()!);
   }
+  // es para poder agregar funciones al componente y que podamos obtener valores desde alli
+  // printTitle = output<string>();
+  // greedHandler() {
+  //   // imprime el titulo
+  //   alert(`Este es el titulo del libro ${this.product()?.name}`);
+  //   // this.printTitle.emit('saludo');
+  // }
 
   // sintaxis antigua, ya no es soportada
   // @input({required:true}) img: string = '';

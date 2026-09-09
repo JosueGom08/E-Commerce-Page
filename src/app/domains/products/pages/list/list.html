@@ -1,8 +1,8 @@
 <div class="container mx-auto">
-  <app-header />
+  <app-header [cart]="cart()" (removeProduct)="removeProduct($event)" />
   <div class="grid grid-cols-4 gap-2 mt-5">
     @for (item of list(); track $index) {
-      <app-product [product]="item" /* (greed)="getGreed()" */ />
+      <app-product [product]="item" (addProductCart)="addElement($event)" />
     }
   </div>
 </div>
