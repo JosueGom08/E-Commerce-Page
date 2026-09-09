@@ -1,0 +1,13 @@
+<div>
+  <input type="text" [value]="duration()" (change)="changeDuration($event)" />
+</div>
+<div>
+  <input type="text" [value]="message()" (change)="changeMessage($event)" />
+</div>
+<div>
+  @if (showCounter()) {
+    <app-counter [duration]="duration()" [message]="message()" (destroySelf)="destroyCounter()" />
+  } @else {
+    <p>El contador ha sido destruido por tener un valor negativo.</p>
+  }
+</div>
