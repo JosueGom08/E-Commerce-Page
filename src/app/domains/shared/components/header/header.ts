@@ -8,9 +8,11 @@ import {
   Signal,
   signal,
   SimpleChanges,
+  inject,
 } from '@angular/core';
 import { ProductM } from '../../../models/product';
 import { Product } from '../../../products/components/product/product';
+import { Cart } from '../../service/cart';
 
 @Component({
   imports: [],
@@ -19,32 +21,39 @@ import { Product } from '../../../products/components/product/product';
   templateUrl: './header.html',
 })
 export class Header {
-  // readonly
-  cart = input<ProductM[]>([]);
-  removeProduct = output<ProductM>();
+  // el servicio
+  private ProductService = inject(Cart);
 
-  // signals
-  // localCart = signal<ProductM[]>([]);
+  // señales
+  cart = this.ProductService.cart;
+  Total = this.ProductService.total;
   hideSide = signal<boolean>(true);
-  Total = signal<number>(0);
 
   toggleSideStyle() {
     // cambiamos el estado del sidebar
     this.hideSide.update((state) => !state);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    const calcCart = changes['cart'];
-    if (calcCart) {
-      this.Total.set(this.sumCartElements());
-    }
-  }
-
-  sumCartElements() {
-    return this.cart().reduce((total, item) => total + item.price, 0);
-  }
-
   removeFromCart(product: ProductM) {
-    this.removeProduct.emit(product);
+    // Funcion que se puede encontrar el el servicio del carrito
+    this.ProductService.removeProduct(product);
   }
+
+  // readonly
+  // cart = input<ProductM[]>([]);
+  // removeProduct = output<ProductM>();
+
+  // signals
+  // localCart = signal<ProductM[]>([]);
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   const calcCart = changes['cart'];
+  //   if (calcCart) {
+  //     this.Total.set(this.sumCartElements());
+  //   }
+  // }
+
+  //   removeFromCart(product: ProductM) {
+  //     this.removeProduct.emit(product);
+  //   }
 }

@@ -125,18 +125,15 @@
           >
             <img
               class="object-cover w-35 rounded-2xl h-35"
-              [src]="product.image"
-              [alt]="product.name"
+              [src]="product.images[0]"
+              [alt]="product.title"
             />
 
             <div class="absolute top-0 left-38 md:p-4 leading-normal mb-8 md:mb-0">
               <h5 class="mb-1 text-1xl font-bold tracking-tight text-heading">
-                {{ product.name }}
+                {{ product.title }}
               </h5>
-              <p class="mb-2 text-body text-sm">
-                {{ product.description }}
-              </p>
-              <p class="mb-2 text-body text-sm">Q.{{ product.price }}.00</p>
+              <p class="mb-2 text-body text-md">Q.{{ product.price }}.00</p>
             </div>
 
             <!-- Contenedor del botón posicionado de forma absoluta -->
