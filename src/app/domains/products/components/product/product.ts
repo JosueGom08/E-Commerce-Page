@@ -1,11 +1,12 @@
 import { Component, inject, input, output } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ProductM } from '../../../models/product';
 import { Cart } from '../../../shared/service/cart';
 import { CommonModule } from '@angular/common';
+import { RouterLinkWithHref } from '@angular/router';
+import { ListProducts } from '../../../shared/service/list';
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLinkWithHref],
   selector: 'app-product', // este sera el nombre del componente externo, no se puede cambiar <app-product /> esa es la forma en como lo podemos agregar
   styleUrl: './product.css',
   templateUrl: './product.html',
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class Product {
   // Servicio
   private ProductService = inject(Cart);
+  private list = inject(ListProducts);
   // Input (necesario para identificar al producto)
   product = input<ProductM>();
 
@@ -20,6 +22,10 @@ export class Product {
     // funcion que se encuentra en el servicio del carrito
     this.ProductService.addProduct(product);
   }
+
+  // setProduct() {
+  //   this.list.setCurrentProduct(this.product()!);
+  // }
 
   // addProductCart = output<ProductM>();
 

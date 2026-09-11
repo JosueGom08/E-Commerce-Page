@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { Counter } from '../../../shared/components/counter/counter';
+import { Header } from '../../../shared/components/header/header';
 
 @Component({
-  imports: [Counter],
+  imports: [Counter, Header],
   selector: 'app-about',
   styleUrl: './about.css',
   templateUrl: './about.html',

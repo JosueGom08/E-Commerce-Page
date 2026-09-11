@@ -1,12 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { Product } from '../../components/product/product';
 import { ProductM } from '../../../models/product';
-import { Header } from '../../../shared/components/header/header';
-import { Cart } from '../../../shared/service/cart';
 import { ListProducts } from '../../../shared/service/list';
 
 @Component({
-  imports: [Product, Header],
+  imports: [Product],
   selector: 'app-list',
   styleUrl: './list.css',
   templateUrl: './list.html',

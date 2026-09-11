@@ -1,14 +1,27 @@
-import { inject, Service, signal } from '@angular/core';
+import { inject, Service, Signal, signal, WritableSignal } from '@angular/core';
 import { ProductM } from '../../models/product';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Service()
 export class ListProducts {
   // almacenamos los valores iniciales en un servicio
   private http = inject(HttpClient);
 
+  // currentProduct = signal<ProductM | undefined>(undefined);
+
+  // setCurrentProduct(product: ProductM) {
+  //   this.currentProduct.set(product!);
+  // }
+
+  // obtenemos todos los productos
   getProducts() {
     return this.http.get<ProductM[]>('https://api.escuelajs.co/api/v1/products');
+  }
+
+  // obtenemos un producto por su id
+  getOneProduct(id: string) {
+    return this.http.get<ProductM>(`https://api.escuelajs.co/api/v1/products/${id}`);
   }
   // public list = signal<ProductM[]>([
   //   {
